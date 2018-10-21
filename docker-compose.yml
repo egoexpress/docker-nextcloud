@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --max-connections=2000
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    env_file:
+      - db.env
+    networks:
+      - backend
+
+  app:  
+    image: nextcloud:apache
+    restart: always
+    volumes:
+      - nextcloud:/var/www/html
+    env_file:
+      - app.env
+    depends_on:
+      - db
+    networks:
+      - frontend
+      - backend
+
+volumes:
+  db:
+  nextcloud:
+  html:
+
+networks:
+  frontend:
+    external:
+      name: proxy_frontend
+  backend:
