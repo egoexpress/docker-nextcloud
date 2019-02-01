@@ -28,7 +28,6 @@ services:
 volumes:
   db:
   nextcloud:
-  html:
 
 networks:
   frontend:
