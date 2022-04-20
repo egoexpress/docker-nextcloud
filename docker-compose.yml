@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: mariadb:10.6
+    image: mariadb:10.7
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --max-connections=2000 --innodb-read-only-compressed=OFF
     restart: always
     volumes:
@@ -11,7 +11,7 @@ services:
       - backend
 
   app:  
-    image: nextcloud:22-apache
+    image: nextcloud:23-apache
     restart: always
     volumes:
       - nextcloud:/var/www/html
