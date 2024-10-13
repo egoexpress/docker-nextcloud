@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   db:
     image: mariadb:11.2
@@ -11,7 +9,7 @@ services:
       - backend
 
   app:  
-    image: nextcloud:28-apache
+    image: nextcloud:30-apache
     restart: always
     volumes:
       - nextcloud:/var/www/html
