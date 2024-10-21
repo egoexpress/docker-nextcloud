@@ -1,6 +1,6 @@
 services:
   db:
-    image: mariadb:11.2
+    image: mariadb:11.5
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --max-connections=2000 --innodb-read-only-compressed=OFF
     restart: always
     volumes:
