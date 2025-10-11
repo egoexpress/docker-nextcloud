@@ -5,6 +5,11 @@ services:
     restart: always
     volumes:
       - db:/var/lib/mysql
+    environment:
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     networks:
       - backend
 
@@ -13,6 +18,11 @@ services:
     restart: always
     volumes:
       - nextcloud:/var/www/html
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      - MYSQL_HOST=db
     depends_on:
       - db
     networks:
@@ -25,5 +35,7 @@ volumes:
 
 networks:
   frontend:
+    name: proxy_frontend
+    external: true
   backend:
     internal: true
