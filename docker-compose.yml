@@ -14,7 +14,7 @@ services:
       - backend
 
   app:  
-    image: nextcloud:34-apache
+    image: nextcloud:35-apache
     restart: always
     volumes:
       - nextcloud:/var/www/html
